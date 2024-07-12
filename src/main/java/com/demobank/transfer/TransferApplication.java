@@ -1,13 +1,13 @@
-package com.demobank.demobank_transfer;
+package com.demobank.transfer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemobankTransferApplication {
+public class TransferApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemobankTransferApplication.class, args);
+		SpringApplication.run(TransferApplication.class, args);
 	}
 
 }

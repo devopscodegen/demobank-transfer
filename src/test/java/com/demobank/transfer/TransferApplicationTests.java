@@ -1,10 +1,10 @@
-package com.demobank.demobank_transfer;
+package com.demobank.transfer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemobankTransferApplicationTests {
+class TransferApplicationTests {
 
 	@Test
 	void contextLoads() {

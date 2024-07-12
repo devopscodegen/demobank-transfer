@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.demobank</groupId>
-	<artifactId>demobank_transfer</artifactId>
+	<artifactId>transfer</artifactId>
 	<version>0.0.1</version>
-	<name>demobank_transfer</name>
+	<name>transfer</name>
 	<description>Transfer Application Component of Demo Bank</description>
 	<url/>
 	<licenses>
@@ -30,6 +30,11 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>

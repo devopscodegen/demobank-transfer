@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.demobank</groupId>
 	<artifactId>demobank_transfer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>demobank_transfer</name>
 	<description>Transfer Application Component of Demo Bank</description>
 	<url/>

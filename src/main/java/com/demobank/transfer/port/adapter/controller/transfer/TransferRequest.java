@@ -1,4 +1,4 @@
-package com.demobank.transfer.port.adapter.controller;
+package com.demobank.transfer.port.adapter.controller.transfer;
 
 public class TransferRequest {
     private String fromAccountId;
@@ -9,10 +9,10 @@ public class TransferRequest {
     public TransferRequest(String fromAccountId, String toAccountId, Double amount, String currency) {
         super();
 
-        setFromAccountId(fromAccountId);
-        setToAccountId(toAccountId);
-        setAmount(amount);
-        setCurrency(currency);
+        this.setFromAccountId(fromAccountId);
+        this.setToAccountId(toAccountId);
+        this.setAmount(amount);
+        this.setCurrency(currency);
     }
 
     public TransferRequest() {

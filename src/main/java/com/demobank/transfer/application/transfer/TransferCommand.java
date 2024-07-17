@@ -1,4 +1,4 @@
-package com.demobank.transfer.application;
+package com.demobank.transfer.application.transfer;
 
 public class TransferCommand {
 
@@ -10,10 +10,10 @@ public class TransferCommand {
     public TransferCommand(String fromAccountId, String toAccountId, Double amount, String currency) {
         super();
 
-        setFromAccountId(fromAccountId);
-        setToAccountId(toAccountId);
-        setAmount(amount);
-        setCurrency(currency);
+        this.setFromAccountId(fromAccountId);
+        this.setToAccountId(toAccountId);
+        this.setAmount(amount);
+        this.setCurrency(currency);
     }
 
     public TransferCommand() {

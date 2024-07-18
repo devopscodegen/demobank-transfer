@@ -6,11 +6,13 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
 import org.springframework.http.MediaType;
 
 import com.demobank.transfer.domain.model.account.AccountService;
-import com.demobank.transfer.domain.model.account.Transaction;
-import com.demobank.transfer.domain.model.account.TransactionStatus;
+import com.demobank.transfer.domain.model.transaction.Transaction;
+import com.demobank.transfer.domain.model.transaction.TransactionStatus;
+import com.demobank.transfer.port.adapter.service.transaction.TransactionRequest;
+import com.demobank.transfer.port.adapter.service.transaction.TransactionResponse;
 
 @Service
-public class AccountServiceREST implements AccountService {
+public class RESTAccountService implements AccountService {
 
     private String baseUrl;
 
@@ -18,7 +20,7 @@ public class AccountServiceREST implements AccountService {
 
     private RestClient.Builder restClientBuilder;
 
-    public AccountServiceREST() {
+    public RESTAccountService() {
         super();
         this.setBaseUrl("http://localhost:8080/api/v1/account");
         this.setRestClientBuilder(RestClient.builder());
@@ -50,7 +52,7 @@ public class AccountServiceREST implements AccountService {
         this.restClientBuilder = restClientBuilder;
     }
 
-    public Transaction withdraw(String accountId, double amount, String currency) {
+    public Transaction withdraw(String accountId, Double amount, String currency) {
         TransactionResponse transactionResponse = this.getRestClient().post()
             .uri("/{accountId}/withdraw", accountId)
             .contentType(MediaType.APPLICATION_JSON)
@@ -58,10 +60,10 @@ public class AccountServiceREST implements AccountService {
             .retrieve()
             .body(TransactionResponse.class);
         
-        return new Transaction(accountId, amount, currency, TransactionStatus.valueOf(transactionResponse.getStatus()), transactionResponse.getTransactionId(), transactionResponse.getNewBalance(), transactionResponse.getNewBalanceCurrency());
+        return new Transaction(transactionResponse.getTransactionId(), accountId, amount, currency, TransactionStatus.valueOf(transactionResponse.getStatus()), transactionResponse.getNewBalance(), transactionResponse.getNewBalanceCurrency());
     }
 
-    public Transaction deposit(String accountId, double amount, String currency) {
+    public Transaction deposit(String accountId, Double amount, String currency) {
         TransactionResponse transactionResponse = this.getRestClient().post()
             .uri("/{accountId}/deposit", accountId)
             .contentType(MediaType.APPLICATION_JSON)
@@ -69,13 +71,6 @@ public class AccountServiceREST implements AccountService {
             .retrieve()
             .body(TransactionResponse.class);
         
-        return new Transaction(
-            accountId, 
-            amount, 
-            currency, 
-            TransactionStatus.valueOf(transactionResponse.getStatus()), 
-            transactionResponse.getTransactionId(), 
-            transactionResponse.getNewBalance(), 
-            transactionResponse.getNewBalanceCurrency());
+            return new Transaction(transactionResponse.getTransactionId(), accountId, amount, currency, TransactionStatus.valueOf(transactionResponse.getStatus()), transactionResponse.getNewBalance(), transactionResponse.getNewBalanceCurrency());
     }
 }

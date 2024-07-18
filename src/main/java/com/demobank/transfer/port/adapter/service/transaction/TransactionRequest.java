@@ -1,4 +1,4 @@
-package com.demobank.transfer.port.adapter.service.account;
+package com.demobank.transfer.port.adapter.service.transaction;
 
 public class TransactionRequest {
     private Double amount;

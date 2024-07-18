@@ -26,6 +26,7 @@ public class TransferController {
                     request.getCurrency()));
         return new TransferResponse(
             transfer.getTransferStatus().toString(),
+            transfer.getTransferId(),
             transfer.getWithdrawTransactionId(),
             transfer.getDepositTransactionId(),
             transfer.getFromAccountNewBalance(),

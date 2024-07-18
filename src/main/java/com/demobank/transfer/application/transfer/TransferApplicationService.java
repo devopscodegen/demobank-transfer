@@ -4,15 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demobank.transfer.domain.model.account.AccountService;
-import com.demobank.transfer.domain.model.account.Transaction;
+import com.demobank.transfer.domain.model.transaction.Transaction;
 import com.demobank.transfer.domain.model.transfer.Transfer;
+import com.demobank.transfer.domain.model.transfer.TransferIdService;
+import com.demobank.transfer.domain.model.transfer.TransferRepository;
 import com.demobank.transfer.domain.model.transfer.TransferStatus;
+
 
 @Service
 public class TransferApplicationService {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private TransferRepository transferRepository;
+
+    @Autowired
+    private TransferIdService transferIdService;
 
     public Transfer transfer(TransferCommand aCommand) {
         Transaction withdrawTransaction = this.accountService.withdraw(
@@ -23,7 +32,8 @@ public class TransferApplicationService {
             aCommand.getToAccountId(), 
             aCommand.getAmount(),
             aCommand.getCurrency());            
-        return new Transfer(
+        return transferRepository.save(new Transfer(
+            transferIdService.nextIdentity(),
             aCommand.getFromAccountId(),
             aCommand.getToAccountId(),
             aCommand.getAmount(),
@@ -35,6 +45,6 @@ public class TransferApplicationService {
             withdrawTransaction.getNewBalanceCurrency(),
             depositTransaction.getNewBalance(),
             depositTransaction.getNewBalanceCurrency()
-        );
+        ));
     }
 }

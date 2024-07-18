@@ -1,17 +1,31 @@
 package com.demobank.transfer.domain.model.transfer;
 
+import java.util.UUID;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Transfer {
+    @Id
+    private UUID transferId;
     private String fromAccountId;
     private String toAccountId;
     private Double amount;
     private String currency;
     private TransferStatus transferStatus;
-    private String withdrawTransactionId;
-    private String depositTransactionId;
-    private double fromAccountNewBalance;
+    private UUID withdrawTransactionId;
+    private UUID depositTransactionId;
+    private Double fromAccountNewBalance;
     private String fromAccountNewBalanceCurrency;
-    private double toAccountNewBalance;
+    private Double toAccountNewBalance;
     private String toAccountNewBalanceCurrency;
+    public UUID getTransferId() {
+        return transferId;
+    }
+    public void setTransferId(UUID transferId) {
+        this.transferId = transferId;
+    }
     public String getFromAccountId() {
         return fromAccountId;
     }
@@ -42,22 +56,22 @@ public class Transfer {
     public void setTransferStatus(TransferStatus transferStatus) {
         this.transferStatus = transferStatus;
     }
-    public String getWithdrawTransactionId() {
+    public UUID getWithdrawTransactionId() {
         return withdrawTransactionId;
     }
-    public void setWithdrawTransactionId(String withdrawTransactionId) {
+    public void setWithdrawTransactionId(UUID withdrawTransactionId) {
         this.withdrawTransactionId = withdrawTransactionId;
     }
-    public String getDepositTransactionId() {
+    public UUID getDepositTransactionId() {
         return depositTransactionId;
     }
-    public void setDepositTransactionId(String depositTransactionId) {
+    public void setDepositTransactionId(UUID depositTransactionId) {
         this.depositTransactionId = depositTransactionId;
     }
-    public double getFromAccountNewBalance() {
+    public Double getFromAccountNewBalance() {
         return fromAccountNewBalance;
     }
-    public void setFromAccountNewBalance(double fromAccountNewBalance) {
+    public void setFromAccountNewBalance(Double fromAccountNewBalance) {
         this.fromAccountNewBalance = fromAccountNewBalance;
     }
     public String getFromAccountNewBalanceCurrency() {
@@ -66,10 +80,10 @@ public class Transfer {
     public void setFromAccountNewBalanceCurrency(String fromAccountNewBalanceCurrency) {
         this.fromAccountNewBalanceCurrency = fromAccountNewBalanceCurrency;
     }
-    public double getToAccountNewBalance() {
+    public Double getToAccountNewBalance() {
         return toAccountNewBalance;
     }
-    public void setToAccountNewBalance(double toAccountNewBalance) {
+    public void setToAccountNewBalance(Double toAccountNewBalance) {
         this.toAccountNewBalance = toAccountNewBalance;
     }
     public String getToAccountNewBalanceCurrency() {
@@ -78,10 +92,11 @@ public class Transfer {
     public void setToAccountNewBalanceCurrency(String toAccountNewBalanceCurrency) {
         this.toAccountNewBalanceCurrency = toAccountNewBalanceCurrency;
     }
-    public Transfer(String fromAccountId, String toAccountId, Double amount, String currency,
-            TransferStatus transferStatus, String withdrawTransactionId, String depositTransactionId,
-            double fromAccountNewBalance, String fromAccountNewBalanceCurrency, double toAccountNewBalance,
+    public Transfer(UUID transferId, String fromAccountId, String toAccountId, Double amount, String currency,
+            TransferStatus transferStatus, UUID withdrawTransactionId, UUID depositTransactionId,
+            Double fromAccountNewBalance, String fromAccountNewBalanceCurrency, Double toAccountNewBalance,
             String toAccountNewBalanceCurrency) {
+        this.setTransferId(transferId);
         this.setFromAccountId(fromAccountId);
         this.setToAccountId(toAccountId);
         this.setAmount(amount);

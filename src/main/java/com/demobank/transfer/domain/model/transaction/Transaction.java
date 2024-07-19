@@ -7,18 +7,18 @@ public class Transaction {
     private UUID transactionId;
     private String accountId;
     private Double amount;
-    private String currency;
+    private String currencyCode;
     private TransactionStatus transactionStatus;
     private Double newBalance;
     private String newBalanceCurrency;
 
-    public Transaction(UUID transactionId, String accountId, Double amount, String currency, TransactionStatus transactionStatus, Double newBalance, String newBalanceCurrency) {
+    public Transaction(UUID transactionId, String accountId, Double amount, String currencyCode, TransactionStatus transactionStatus, Double newBalance, String newBalanceCurrency) {
         super();
 
         this.setTransactionId(transactionId);
         this.setAccountId(accountId);
         this.setAmount(amount);
-        this.setCurrency(currency);
+        this.setCurrencyCode(currencyCode);
         this.setStatus(transactionStatus);
         this.setNewBalance(newBalance);
         this.setNewBalanceCurrency(newBalanceCurrency);
@@ -52,12 +52,12 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public String getCurrency() {
-        return currency;
+    public String getCurrencyCode() {
+        return currencyCode;
     }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
     }
 
     public TransactionStatus getStatus() {

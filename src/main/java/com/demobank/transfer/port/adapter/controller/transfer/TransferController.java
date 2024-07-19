@@ -23,7 +23,7 @@ public class TransferController {
                     request.getFromAccountId(), 
                     request.getToAccountId(), 
                     request.getAmount(), 
-                    request.getCurrency()));
+                    request.getCurrencyCode()));
         return new TransferResponse(
             transfer.getTransferStatus().toString(),
             transfer.getTransferId(),

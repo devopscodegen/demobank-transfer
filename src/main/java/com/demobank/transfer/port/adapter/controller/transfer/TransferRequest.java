@@ -4,15 +4,15 @@ public class TransferRequest {
     private String fromAccountId;
     private String toAccountId;
     private Double amount;
-    private String currency;
+    private String currencyCode;
 
-    public TransferRequest(String fromAccountId, String toAccountId, Double amount, String currency) {
+    public TransferRequest(String fromAccountId, String toAccountId, Double amount, String currencyCode) {
         super();
 
         this.setFromAccountId(fromAccountId);
         this.setToAccountId(toAccountId);
         this.setAmount(amount);
-        this.setCurrency(currency);
+        this.setCurrencyCode(currencyCode);
     }
 
     public TransferRequest() {
@@ -43,11 +43,11 @@ public class TransferRequest {
         this.amount = amount;
     }
 
-    public String getCurrency() {
-        return currency;
+    public String getCurrencyCode() {
+        return currencyCode;
     }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
     }
 }

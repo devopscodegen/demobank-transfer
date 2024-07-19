@@ -52,25 +52,25 @@ public class RESTAccountService implements AccountService {
         this.restClientBuilder = restClientBuilder;
     }
 
-    public Transaction withdraw(String accountId, Double amount, String currency) {
+    public Transaction withdraw(String accountId, Double amount, String currencyCode) {
         TransactionResponse transactionResponse = this.getRestClient().post()
             .uri("/{accountId}/withdraw", accountId)
             .contentType(MediaType.APPLICATION_JSON)
-            .body(new TransactionRequest(amount, currency))
+            .body(new TransactionRequest(amount, currencyCode))
             .retrieve()
             .body(TransactionResponse.class);
         
-        return new Transaction(transactionResponse.getTransactionId(), accountId, amount, currency, TransactionStatus.valueOf(transactionResponse.getStatus()), transactionResponse.getNewBalance(), transactionResponse.getNewBalanceCurrency());
+        return new Transaction(transactionResponse.getTransactionId(), accountId, amount, currencyCode, TransactionStatus.valueOf(transactionResponse.getStatus()), transactionResponse.getNewBalance(), transactionResponse.getNewBalanceCurrency());
     }
 
-    public Transaction deposit(String accountId, Double amount, String currency) {
+    public Transaction deposit(String accountId, Double amount, String currencyCode) {
         TransactionResponse transactionResponse = this.getRestClient().post()
             .uri("/{accountId}/deposit", accountId)
             .contentType(MediaType.APPLICATION_JSON)
-            .body(new TransactionRequest(amount, currency))
+            .body(new TransactionRequest(amount, currencyCode))
             .retrieve()
             .body(TransactionResponse.class);
         
-            return new Transaction(transactionResponse.getTransactionId(), accountId, amount, currency, TransactionStatus.valueOf(transactionResponse.getStatus()), transactionResponse.getNewBalance(), transactionResponse.getNewBalanceCurrency());
+            return new Transaction(transactionResponse.getTransactionId(), accountId, amount, currencyCode, TransactionStatus.valueOf(transactionResponse.getStatus()), transactionResponse.getNewBalance(), transactionResponse.getNewBalanceCurrency());
     }
 }

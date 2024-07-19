@@ -27,17 +27,17 @@ public class TransferApplicationService {
         Transaction withdrawTransaction = this.accountService.withdraw(
             aCommand.getFromAccountId(), 
             aCommand.getAmount(),
-            aCommand.getCurrency());
+            aCommand.getCurrencyCode());
         Transaction depositTransaction = this.accountService.deposit(
             aCommand.getToAccountId(), 
             aCommand.getAmount(),
-            aCommand.getCurrency());            
+            aCommand.getCurrencyCode());            
         return transferRepository.save(new Transfer(
             transferIdService.nextIdentity(),
             aCommand.getFromAccountId(),
             aCommand.getToAccountId(),
             aCommand.getAmount(),
-            aCommand.getCurrency(),
+            aCommand.getCurrencyCode(),
             TransferStatus.SUCCESS,
             withdrawTransaction.getTransactionId(),
             depositTransaction.getTransactionId(),

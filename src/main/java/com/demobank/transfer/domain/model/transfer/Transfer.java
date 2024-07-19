@@ -12,7 +12,7 @@ public class Transfer {
     private String fromAccountId;
     private String toAccountId;
     private Double amount;
-    private String currency;
+    private String currencyCode;
     private TransferStatus transferStatus;
     private UUID withdrawTransactionId;
     private UUID depositTransactionId;
@@ -44,11 +44,11 @@ public class Transfer {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
-    public String getCurrency() {
-        return currency;
+    public String getCurrencyCode() {
+        return currencyCode;
     }
-    public void setCurrency(String currency) {
-        this.currency = currency;
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
     }
     public TransferStatus getTransferStatus() {
         return transferStatus;
@@ -92,7 +92,7 @@ public class Transfer {
     public void setToAccountNewBalanceCurrency(String toAccountNewBalanceCurrency) {
         this.toAccountNewBalanceCurrency = toAccountNewBalanceCurrency;
     }
-    public Transfer(UUID transferId, String fromAccountId, String toAccountId, Double amount, String currency,
+    public Transfer(UUID transferId, String fromAccountId, String toAccountId, Double amount, String currencyCode,
             TransferStatus transferStatus, UUID withdrawTransactionId, UUID depositTransactionId,
             Double fromAccountNewBalance, String fromAccountNewBalanceCurrency, Double toAccountNewBalance,
             String toAccountNewBalanceCurrency) {
@@ -100,7 +100,7 @@ public class Transfer {
         this.setFromAccountId(fromAccountId);
         this.setToAccountId(toAccountId);
         this.setAmount(amount);
-        this.setCurrency(currency);
+        this.setCurrencyCode(currencyCode);
         this.setTransferStatus(transferStatus);
         this.setWithdrawTransactionId(withdrawTransactionId);
         this.setDepositTransactionId(depositTransactionId);

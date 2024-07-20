@@ -6,7 +6,7 @@ Transfer Application Component of Demo Bank using below technologies
 
 Add Common React Frontend Application Component for all
 Add MongoDB Persistence - Done
-Add Events
+Add Events - Done
 Add Data Ingestion Pipeline Application Component
 Change currency to currency code - Done
 Add jmolecules and DDD blog annotations and interfaces like AggregateRoot

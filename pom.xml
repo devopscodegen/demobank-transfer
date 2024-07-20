@@ -9,11 +9,11 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.demobank</groupId>
-	<artifactId>account</artifactId>
+	<artifactId>transfer</artifactId>
 	<version>1.0.0</version>
-	<name>account</name>
-	<description>Account Application Component of Demo Bank</description>
-	<url>https://github.com/devopscodegen/demobank-account-java-springboot-maven</url>
+	<name>transfer</name>
+	<description>Transfer Application Component of Demo Bank</description>
+	<url>https://github.com/devopscodegen/demobank-transfer-java-springboot-maven</url>
 	<licenses>
 		<license>
 			<name>MIT License</name>

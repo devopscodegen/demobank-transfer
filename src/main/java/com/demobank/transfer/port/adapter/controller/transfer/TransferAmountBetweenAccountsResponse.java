@@ -1,67 +1,68 @@
 package com.demobank.transfer.port.adapter.controller.transfer;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
-public class TransferResponse {
+public class TransferAmountBetweenAccountsResponse {
     private String transferStatus;
     private UUID transferId;
     private UUID withdrawTransactionId;
     private UUID depositTransactionId;
-    private Double fromAccountNewBalance;
+    private BigDecimal fromAccountNewBalance;
     private String fromAccountNewBalanceCurrency;
-    private Double toAccountNewBalance;
+    private BigDecimal toAccountNewBalance;
     private String toAccountNewBalanceCurrency;
     public String getTransferStatus() {
         return transferStatus;
     }
-    public void setTransferStatus(String transferStatus) {
+    private void setTransferStatus(String transferStatus) {
         this.transferStatus = transferStatus;
     }
     public UUID getTransferId() {
         return transferId;
     }
-    public void setTransferId(UUID transferId) {
+    private void setTransferId(UUID transferId) {
         this.transferId = transferId;
     }
     public UUID getWithdrawTransactionId() {
         return withdrawTransactionId;
     }
-    public void setWithdrawTransactionId(UUID withdrawTransactionId) {
+    private void setWithdrawTransactionId(UUID withdrawTransactionId) {
         this.withdrawTransactionId = withdrawTransactionId;
     }
     public UUID getDepositTransactionId() {
         return depositTransactionId;
     }
-    public void setDepositTransactionId(UUID depositTransactionId) {
+    private void setDepositTransactionId(UUID depositTransactionId) {
         this.depositTransactionId = depositTransactionId;
     }
-    public Double getFromAccountNewBalance() {
+    public BigDecimal getFromAccountNewBalance() {
         return fromAccountNewBalance;
     }
-    public void setFromAccountNewBalance(Double fromAccountNewBalance) {
+    private void setFromAccountNewBalance(BigDecimal fromAccountNewBalance) {
         this.fromAccountNewBalance = fromAccountNewBalance;
     }
     public String getFromAccountNewBalanceCurrency() {
         return fromAccountNewBalanceCurrency;
     }
-    public void setFromAccountNewBalanceCurrency(String fromAccountNewBalanceCurrency) {
+    private void setFromAccountNewBalanceCurrency(String fromAccountNewBalanceCurrency) {
         this.fromAccountNewBalanceCurrency = fromAccountNewBalanceCurrency;
     }
-    public Double getToAccountNewBalance() {
+    public BigDecimal getToAccountNewBalance() {
         return toAccountNewBalance;
     }
-    public void setToAccountNewBalance(Double toAccountNewBalance) {
+    private void setToAccountNewBalance(BigDecimal toAccountNewBalance) {
         this.toAccountNewBalance = toAccountNewBalance;
     }
     public String getToAccountNewBalanceCurrency() {
         return toAccountNewBalanceCurrency;
     }
-    public void setToAccountNewBalanceCurrency(String toAccountNewBalanceCurrency) {
+    private void setToAccountNewBalanceCurrency(String toAccountNewBalanceCurrency) {
         this.toAccountNewBalanceCurrency = toAccountNewBalanceCurrency;
     }
-    public TransferResponse(
+    public TransferAmountBetweenAccountsResponse(
             String transferStatus, UUID transferId, UUID withdrawTransactionId, UUID depositTransactionId,
-            Double fromAccountNewBalance, String fromAccountNewBalanceCurrency, Double toAccountNewBalance,
+            BigDecimal fromAccountNewBalance, String fromAccountNewBalanceCurrency, BigDecimal toAccountNewBalance,
             String toAccountNewBalanceCurrency) {
         this.setTransferStatus(transferStatus);
         this.setTransferId(transferId);

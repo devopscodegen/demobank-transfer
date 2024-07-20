@@ -3,13 +3,15 @@ package com.demobank.transfer.application.transfer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demobank.transfer.domain.model.account.AccountId;
 import com.demobank.transfer.domain.model.account.AccountService;
-import com.demobank.transfer.domain.model.transaction.Transaction;
+import com.demobank.transfer.domain.model.account.transaction.Transaction;
+import com.demobank.transfer.domain.model.currency.CurrencyCode;
+import com.demobank.transfer.domain.model.money.Money;
 import com.demobank.transfer.domain.model.transfer.Transfer;
-import com.demobank.transfer.domain.model.transfer.TransferIdService;
+import com.demobank.transfer.domain.model.transfer.TransferId;
 import com.demobank.transfer.domain.model.transfer.TransferRepository;
 import com.demobank.transfer.domain.model.transfer.TransferStatus;
-
 
 @Service
 public class TransferApplicationService {
@@ -20,31 +22,33 @@ public class TransferApplicationService {
     @Autowired
     private TransferRepository transferRepository;
 
-    @Autowired
-    private TransferIdService transferIdService;
-
-    public Transfer transfer(TransferCommand aCommand) {
-        Transaction withdrawTransaction = this.accountService.withdraw(
-            aCommand.getFromAccountId(), 
+    public Transfer transferAmountBetweenAccounts(TransferAmountBetweenAccountsCommand aCommand) {
+        AccountId fromAccountId = new AccountId(aCommand.getFromAccountId());
+        AccountId toAccountId = new AccountId(aCommand.getToAccountId());
+        CurrencyCode currencyCode = CurrencyCode.valueOf(aCommand.getCurrencyCode());
+        Money amount = new Money(
             aCommand.getAmount(),
-            aCommand.getCurrencyCode());
-        Transaction depositTransaction = this.accountService.deposit(
-            aCommand.getToAccountId(), 
-            aCommand.getAmount(),
-            aCommand.getCurrencyCode());            
-        return transferRepository.save(new Transfer(
-            transferIdService.nextIdentity(),
-            aCommand.getFromAccountId(),
-            aCommand.getToAccountId(),
-            aCommand.getAmount(),
-            aCommand.getCurrencyCode(),
+            currencyCode
+        );
+        Transaction withdrawTransaction = this.accountService.withdrawAmountFromAccount(
+            fromAccountId,
+            amount
+        );
+        Transaction depositTransaction = this.accountService.depositAmountToAccount(
+            toAccountId,
+            amount
+        );          
+        Transfer transfer = new Transfer(
+            new TransferId(),
+            fromAccountId,
+            toAccountId,
+            amount,
             TransferStatus.SUCCESS,
             withdrawTransaction.getTransactionId(),
             depositTransaction.getTransactionId(),
             withdrawTransaction.getNewBalance(),
-            withdrawTransaction.getNewBalanceCurrency(),
-            depositTransaction.getNewBalance(),
-            depositTransaction.getNewBalanceCurrency()
-        ));
+            depositTransaction.getNewBalance()
+        );
+        return transferRepository.save(transfer);
     }
 }

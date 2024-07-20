@@ -1,9 +1,7 @@
 package com.demobank.transfer.domain.model.transfer;
 
-import java.util.UUID;
+import com.demobank.transfer.domain.model.common.BaseRepository;
 
-import org.springframework.data.repository.CrudRepository;
-
-public interface TransferRepository extends CrudRepository<Transfer, UUID>{
+public interface TransferRepository extends BaseRepository<Transfer, TransferId>{
     
 }

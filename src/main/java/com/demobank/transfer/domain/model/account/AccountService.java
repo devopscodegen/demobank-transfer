@@ -1,9 +1,10 @@
 package com.demobank.transfer.domain.model.account;
 
-import com.demobank.transfer.domain.model.transaction.Transaction;
+import com.demobank.transfer.domain.model.account.transaction.Transaction;
+import com.demobank.transfer.domain.model.money.Money;
 
 public interface AccountService {
-	public Transaction withdraw(String accountId, Double amount, String currencyCode);
+	public Transaction withdrawAmountFromAccount(AccountId accountId, Money amount);
 
-    public Transaction deposit(String accountId, Double amount, String currencyCode);
+    public Transaction depositAmountToAccount(AccountId accountId, Money amount);
 }

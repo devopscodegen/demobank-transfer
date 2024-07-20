@@ -1,113 +1,106 @@
 package com.demobank.transfer.domain.model.transfer;
 
-import java.util.UUID;
-
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
-public class Transfer {
+import com.demobank.transfer.domain.model.account.AccountId;
+import com.demobank.transfer.domain.model.account.transaction.TransactionId;
+import com.demobank.transfer.domain.model.common.BaseAggregateRoot;
+import com.demobank.transfer.domain.model.money.Money;
+
+import jakarta.annotation.Nullable;
+
+@Document("transfers")
+public class Transfer extends BaseAggregateRoot<Transfer, TransferId>{
     @Id
-    private UUID transferId;
-    private String fromAccountId;
-    private String toAccountId;
-    private Double amount;
-    private String currencyCode;
+    private TransferId transferId;
+    private AccountId fromAccountId;
+    private AccountId toAccountId;
+    private Money amount;
     private TransferStatus transferStatus;
-    private UUID withdrawTransactionId;
-    private UUID depositTransactionId;
-    private Double fromAccountNewBalance;
-    private String fromAccountNewBalanceCurrency;
-    private Double toAccountNewBalance;
-    private String toAccountNewBalanceCurrency;
-    public UUID getTransferId() {
+    private TransactionId withdrawTransactionId;
+    private TransactionId depositTransactionId;
+    private Money fromAccountNewBalance;
+    private Money toAccountNewBalance;
+    public TransferId getTransferId() {
         return transferId;
     }
-    public void setTransferId(UUID transferId) {
+    private void setTransferId(TransferId transferId) {
         this.transferId = transferId;
     }
-    public String getFromAccountId() {
+    public AccountId getFromAccountId() {
         return fromAccountId;
     }
-    public void setFromAccountId(String fromAccountId) {
+    private void setFromAccountId(AccountId fromAccountId) {
         this.fromAccountId = fromAccountId;
     }
-    public String getToAccountId() {
+    public AccountId getToAccountId() {
         return toAccountId;
     }
-    public void setToAccountId(String toAccountId) {
+    private void setToAccountId(AccountId toAccountId) {
         this.toAccountId = toAccountId;
     }
-    public Double getAmount() {
+    public Money getAmount() {
         return amount;
     }
-    public void setAmount(Double amount) {
+    private void setAmount(Money amount) {
         this.amount = amount;
-    }
-    public String getCurrencyCode() {
-        return currencyCode;
-    }
-    public void setCurrencyCode(String currencyCode) {
-        this.currencyCode = currencyCode;
     }
     public TransferStatus getTransferStatus() {
         return transferStatus;
     }
-    public void setTransferStatus(TransferStatus transferStatus) {
+    private void setTransferStatus(TransferStatus transferStatus) {
         this.transferStatus = transferStatus;
     }
-    public UUID getWithdrawTransactionId() {
+    public TransactionId getWithdrawTransactionId() {
         return withdrawTransactionId;
     }
-    public void setWithdrawTransactionId(UUID withdrawTransactionId) {
+    private void setWithdrawTransactionId(TransactionId withdrawTransactionId) {
         this.withdrawTransactionId = withdrawTransactionId;
     }
-    public UUID getDepositTransactionId() {
+    public TransactionId getDepositTransactionId() {
         return depositTransactionId;
     }
-    public void setDepositTransactionId(UUID depositTransactionId) {
+    private void setDepositTransactionId(TransactionId depositTransactionId) {
         this.depositTransactionId = depositTransactionId;
     }
-    public Double getFromAccountNewBalance() {
+    public Money getFromAccountNewBalance() {
         return fromAccountNewBalance;
     }
-    public void setFromAccountNewBalance(Double fromAccountNewBalance) {
+    private void setFromAccountNewBalance(Money fromAccountNewBalance) {
         this.fromAccountNewBalance = fromAccountNewBalance;
     }
-    public String getFromAccountNewBalanceCurrency() {
-        return fromAccountNewBalanceCurrency;
-    }
-    public void setFromAccountNewBalanceCurrency(String fromAccountNewBalanceCurrency) {
-        this.fromAccountNewBalanceCurrency = fromAccountNewBalanceCurrency;
-    }
-    public Double getToAccountNewBalance() {
+    public Money getToAccountNewBalance() {
         return toAccountNewBalance;
     }
-    public void setToAccountNewBalance(Double toAccountNewBalance) {
+    private void setToAccountNewBalance(Money toAccountNewBalance) {
         this.toAccountNewBalance = toAccountNewBalance;
     }
-    public String getToAccountNewBalanceCurrency() {
-        return toAccountNewBalanceCurrency;
-    }
-    public void setToAccountNewBalanceCurrency(String toAccountNewBalanceCurrency) {
-        this.toAccountNewBalanceCurrency = toAccountNewBalanceCurrency;
-    }
-    public Transfer(UUID transferId, String fromAccountId, String toAccountId, Double amount, String currencyCode,
-            TransferStatus transferStatus, UUID withdrawTransactionId, UUID depositTransactionId,
-            Double fromAccountNewBalance, String fromAccountNewBalanceCurrency, Double toAccountNewBalance,
-            String toAccountNewBalanceCurrency) {
+    public Transfer(TransferId transferId, AccountId fromAccountId, AccountId toAccountId, Money amount,
+            TransferStatus transferStatus, TransactionId withdrawTransactionId, TransactionId depositTransactionId,
+            Money fromAccountNewBalance, Money toAccountNewBalance) {
+        super();
         this.setTransferId(transferId);
         this.setFromAccountId(fromAccountId);
         this.setToAccountId(toAccountId);
         this.setAmount(amount);
-        this.setCurrencyCode(currencyCode);
         this.setTransferStatus(transferStatus);
         this.setWithdrawTransactionId(withdrawTransactionId);
         this.setDepositTransactionId(depositTransactionId);
         this.setFromAccountNewBalance(fromAccountNewBalance);
-        this.setFromAccountNewBalanceCurrency(fromAccountNewBalanceCurrency);
         this.setToAccountNewBalance(toAccountNewBalance);
-        this.setToAccountNewBalanceCurrency(toAccountNewBalanceCurrency);
+        registerEvent(new AmountTransferredBetweenAccounts(this));
     }
+    @Nullable
+	@Override
+	public TransferId getId() {
+		return this.getTransferId();
+	}
+	@Transient
+	@Override
+	public boolean isNew() {
+		return null == getId();
+	}
 }
 

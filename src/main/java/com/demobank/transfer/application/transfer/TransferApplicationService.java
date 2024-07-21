@@ -1,5 +1,6 @@
 package com.demobank.transfer.application.transfer;
 
+import org.jmolecules.architecture.hexagonal.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import com.demobank.transfer.domain.model.transfer.TransferRepository;
 import com.demobank.transfer.domain.model.transfer.TransferStatus;
 
 @Service
+@Application
 public class TransferApplicationService {
 
     @Autowired

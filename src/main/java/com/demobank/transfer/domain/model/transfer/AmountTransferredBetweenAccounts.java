@@ -2,22 +2,26 @@ package com.demobank.transfer.domain.model.transfer;
 
 import java.util.Date;
 
+import org.jmolecules.event.annotation.DomainEvent;
+
 import com.demobank.transfer.domain.model.common.BaseDomainEvent;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
+
+@Getter
+@Setter
+@SuperBuilder
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@ToString
+@DomainEvent
 public class AmountTransferredBetweenAccounts extends BaseDomainEvent {
     private Transfer transfer;
-
-    public AmountTransferredBetweenAccounts() {
-        super();
-    }
-
-    public Transfer getTransfer() {
-        return this.transfer;
-    }
-
-    private void setTransfer(Transfer transfer) {
-        this.transfer = transfer;
-    }
 
     public AmountTransferredBetweenAccounts(Transfer transfer) {
         super();

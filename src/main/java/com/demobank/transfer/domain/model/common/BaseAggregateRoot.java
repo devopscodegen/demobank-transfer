@@ -11,7 +11,11 @@ import org.springframework.data.domain.AfterDomainEventPublication;
 import org.springframework.data.domain.DomainEvents;
 import org.springframework.util.Assert;
 
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
+@SuperBuilder
+@NoArgsConstructor
 public abstract class BaseAggregateRoot<A extends BaseAggregateRoot<A, Id>, Id extends Serializable> extends BaseEntity<Id> {
 
 	private transient final @Transient List<Object> domainEvents = new ArrayList<>();

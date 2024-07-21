@@ -1,6 +1,8 @@
 package com.demobank.transfer.port.adapter.events.common;
 
 import org.apache.kafka.clients.admin.NewTopic;
+import org.jmolecules.architecture.hexagonal.Adapter;
+import org.jmolecules.event.annotation.DomainEventHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.EventListener;
@@ -12,6 +14,7 @@ import com.demobank.transfer.domain.model.common.DomainEvent;
 import com.demobank.transfer.domain.model.common.DomainEventListener;
 
 @Component
+@Adapter
 public class KafkaDomainEventListener implements DomainEventListener {
     private final KafkaTemplate<String, DomainEvent> kafkaTemplate;
     private final String topicName;
@@ -35,6 +38,7 @@ public class KafkaDomainEventListener implements DomainEventListener {
     }
 
     @EventListener
+    @DomainEventHandler
     public void handleDomainEvent(DomainEvent event) {
         this.kafkaTemplate.sendDefault(event);
     }

@@ -1,6 +1,11 @@
 package com.demobank.transfer.domain.model.account.transaction;
 
-public enum TransactionStatus {
+import org.jmolecules.ddd.annotation.ValueObject;
+
+import com.demobank.transfer.domain.model.common.BaseValueObject;
+
+@ValueObject
+public enum TransactionStatus implements BaseValueObject{
 
     SUCCESS {
         public boolean isSuccess() {

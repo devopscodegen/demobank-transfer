@@ -1,6 +1,11 @@
 package com.demobank.transfer.domain.model.currency;
 
-public enum CurrencyCode {
+import org.jmolecules.ddd.annotation.ValueObject;
+
+import com.demobank.transfer.domain.model.common.BaseValueObject;
+
+@ValueObject
+public enum CurrencyCode implements BaseValueObject{
 
     USD {
         public boolean isUsd() {

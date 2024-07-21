@@ -3,8 +3,7 @@ package com.demobank.transfer.port.adapter.service.account;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.util.DefaultUriBuilderFactory;
-
-
+import org.jmolecules.architecture.hexagonal.Adapter;
 import org.springframework.http.MediaType;
 
 import com.demobank.transfer.domain.model.account.AccountId;
@@ -18,6 +17,7 @@ import com.demobank.transfer.port.adapter.service.account.transaction.Transactio
 import com.demobank.transfer.port.adapter.service.account.transaction.TransactionResponse;
 
 @Service
+@Adapter
 public class RESTAccountService implements AccountService {
 
     private String baseUrl;

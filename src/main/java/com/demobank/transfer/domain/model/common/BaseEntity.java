@@ -8,7 +8,11 @@ import org.springframework.data.domain.Persistable;
 
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
+@SuperBuilder
+@NoArgsConstructor
 public abstract class BaseEntity<Id extends Serializable> implements Persistable<Id> {
 
     //@Version

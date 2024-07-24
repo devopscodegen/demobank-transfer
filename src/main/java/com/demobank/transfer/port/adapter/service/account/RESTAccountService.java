@@ -58,9 +58,9 @@ public class RESTAccountService implements AccountService {
         this.restClientBuilder = restClientBuilder;
     }
 
-    public Transaction withdrawAmountFromAccount(AccountId accountId, Money amount) {
+    public Transaction debitAmountFromAccount(AccountId accountId, Money amount) {
         TransactionResponse transactionResponse = this.getRestClient().post()
-            .uri("/{accountId}/withdraw", accountId.getId())
+            .uri("/{accountId}/debit", accountId.getId())
             .contentType(MediaType.APPLICATION_JSON)
             .body(new TransactionRequest(
                 amount.getAmount(), 
@@ -81,9 +81,9 @@ public class RESTAccountService implements AccountService {
         );
     }
 
-    public Transaction depositAmountToAccount(AccountId accountId, Money amount) {
+    public Transaction creditAmountToAccount(AccountId accountId, Money amount) {
         TransactionResponse transactionResponse = this.getRestClient().post()
-            .uri("/{accountId}/deposit", accountId.getId())
+            .uri("/{accountId}/credit", accountId.getId())
             .contentType(MediaType.APPLICATION_JSON)
             .body(new TransactionRequest(
                 amount.getAmount(), 

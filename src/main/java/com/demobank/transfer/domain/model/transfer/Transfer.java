@@ -35,12 +35,12 @@ public class Transfer extends BaseAggregateRoot<Transfer, TransferId>{
     private AccountId toAccountId;
     private Money amount;
     private TransferStatus transferStatus;
-    private TransactionId withdrawTransactionId;
-    private TransactionId depositTransactionId;
+    private TransactionId debitTransactionId;
+    private TransactionId creditTransactionId;
     private Money fromAccountNewBalance;
     private Money toAccountNewBalance;
     public Transfer(TransferId transferId, AccountId fromAccountId, AccountId toAccountId, Money amount,
-            TransferStatus transferStatus, TransactionId withdrawTransactionId, TransactionId depositTransactionId,
+            TransferStatus transferStatus, TransactionId debitTransactionId, TransactionId creditTransactionId,
             Money fromAccountNewBalance, Money toAccountNewBalance) {
         super();
         this.setTransferId(transferId);
@@ -48,8 +48,8 @@ public class Transfer extends BaseAggregateRoot<Transfer, TransferId>{
         this.setToAccountId(toAccountId);
         this.setAmount(amount);
         this.setTransferStatus(transferStatus);
-        this.setWithdrawTransactionId(withdrawTransactionId);
-        this.setDepositTransactionId(depositTransactionId);
+        this.setDebitTransactionId(debitTransactionId);
+        this.setCreditTransactionId(creditTransactionId);
         this.setFromAccountNewBalance(fromAccountNewBalance);
         this.setToAccountNewBalance(toAccountNewBalance);
         registerEvent(new AmountTransferredBetweenAccounts(this));

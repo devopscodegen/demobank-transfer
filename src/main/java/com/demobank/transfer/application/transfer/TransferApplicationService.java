@@ -32,11 +32,11 @@ public class TransferApplicationService {
             aCommand.getAmount(),
             currencyCode
         );
-        Transaction withdrawTransaction = this.accountService.withdrawAmountFromAccount(
+        Transaction debitTransaction = this.accountService.debitAmountFromAccount(
             fromAccountId,
             amount
         );
-        Transaction depositTransaction = this.accountService.depositAmountToAccount(
+        Transaction creditTransaction = this.accountService.creditAmountToAccount(
             toAccountId,
             amount
         );          
@@ -46,10 +46,10 @@ public class TransferApplicationService {
             toAccountId,
             amount,
             TransferStatus.SUCCESS,
-            withdrawTransaction.getTransactionId(),
-            depositTransaction.getTransactionId(),
-            withdrawTransaction.getNewBalance(),
-            depositTransaction.getNewBalance()
+            debitTransaction.getTransactionId(),
+            creditTransaction.getTransactionId(),
+            debitTransaction.getNewBalance(),
+            creditTransaction.getNewBalance()
         );
         return transferRepository.save(transfer);
     }

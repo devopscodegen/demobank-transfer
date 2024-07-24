@@ -29,8 +29,8 @@ public class TransferController {
         return new TransferAmountBetweenAccountsResponse(
             transfer.getTransferStatus().toString(),
             transfer.getTransferId().getId(),
-            transfer.getWithdrawTransactionId().getId(),
-            transfer.getDepositTransactionId().getId(),
+            transfer.getDebitTransactionId().getId(),
+            transfer.getCreditTransactionId().getId(),
             transfer.getFromAccountNewBalance().getAmount(),
             transfer.getFromAccountNewBalance().getCurrencyCode().toString(),
             transfer.getToAccountNewBalance().getAmount(),

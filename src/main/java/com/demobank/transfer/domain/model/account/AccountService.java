@@ -9,7 +9,7 @@ import com.demobank.transfer.domain.model.money.Money;
 @Service
 @Port
 public interface AccountService {
-	public Transaction withdrawAmountFromAccount(AccountId accountId, Money amount);
+	public Transaction debitAmountFromAccount(AccountId accountId, Money amount);
 
-    public Transaction depositAmountToAccount(AccountId accountId, Money amount);
+    public Transaction creditAmountToAccount(AccountId accountId, Money amount);
 }

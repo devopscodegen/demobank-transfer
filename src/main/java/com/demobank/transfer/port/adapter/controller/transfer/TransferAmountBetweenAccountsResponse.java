@@ -19,8 +19,8 @@ import lombok.ToString;
 public class TransferAmountBetweenAccountsResponse {
     private String transferStatus;
     private UUID transferId;
-    private UUID withdrawTransactionId;
-    private UUID depositTransactionId;
+    private UUID debitTransactionId;
+    private UUID creditTransactionId;
     private BigDecimal fromAccountNewBalance;
     private String fromAccountNewBalanceCurrency;
     private BigDecimal toAccountNewBalance;

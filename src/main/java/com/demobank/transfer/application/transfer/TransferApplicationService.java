@@ -5,21 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demobank.transfer.domain.model.account.AccountId;
-import com.demobank.transfer.domain.model.account.AccountService;
-import com.demobank.transfer.domain.model.account.transaction.Transaction;
 import com.demobank.transfer.domain.model.currency.CurrencyCode;
 import com.demobank.transfer.domain.model.money.Money;
 import com.demobank.transfer.domain.model.transfer.Transfer;
-import com.demobank.transfer.domain.model.transfer.TransferId;
 import com.demobank.transfer.domain.model.transfer.TransferRepository;
-import com.demobank.transfer.domain.model.transfer.TransferStatus;
+import com.demobank.transfer.domain.model.transfer.TransferService;
 
 @Service
 @Application
 public class TransferApplicationService {
 
     @Autowired
-    private AccountService accountService;
+    private TransferService transferService;
 
     @Autowired
     private TransferRepository transferRepository;
@@ -31,26 +28,11 @@ public class TransferApplicationService {
         Money amount = new Money(
             aCommand.getAmount(),
             currencyCode
-        );
-        Transaction debitTransaction = this.accountService.debitAmountFromAccount(
-            fromAccountId,
-            amount
-        );
-        Transaction creditTransaction = this.accountService.creditAmountToAccount(
-            toAccountId,
-            amount
-        );          
-        Transfer transfer = new Transfer(
-            new TransferId(),
+        );      
+        Transfer transfer = this.transferService.transferAmountBetweenAccounts(
             fromAccountId,
             toAccountId,
-            amount,
-            TransferStatus.SUCCESS,
-            debitTransaction.getTransactionId(),
-            creditTransaction.getTransactionId(),
-            debitTransaction.getNewBalance(),
-            creditTransaction.getNewBalance()
-        );
+            amount);
         return transferRepository.save(transfer);
     }
 }

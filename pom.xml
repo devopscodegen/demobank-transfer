@@ -12,7 +12,7 @@
 	<artifactId>transfer</artifactId>
 	<version>1.0.0</version>
 	<name>transfer</name>
-	<description>Transfer Application Component of Demo Bank</description>
+	<description>Transfer component of app01 application of orgunit01 organizational unit of example-bank organisation</description>
 	<url>https://github.com/example-bank/orgunit01-app01-transfer</url>
 	<licenses>
 		<license>

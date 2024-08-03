@@ -8,12 +8,12 @@
 		<version>3.3.2</version>
 		<relativePath/>
 	</parent>
-	<groupId>com.demobank</groupId>
+	<groupId>com.example.bank</groupId>
 	<artifactId>transfer</artifactId>
 	<version>1.0.0</version>
 	<name>transfer</name>
 	<description>Transfer Application Component of Demo Bank</description>
-	<url>https://github.com/devopscodegen/demobank-transfer-java-springboot-maven</url>
+	<url>https://github.com/example-bank/orgunit01-app01-transfer</url>
 	<licenses>
 		<license>
 			<name>MIT License</name>
@@ -26,8 +26,8 @@
 			<id>sagarvelankar</id>
 			<name>Sagar Velankar</name>
 			<email>sagar.velankar@gmail.com</email>
-			<organization>devopscodegen</organization>
-			<organizationUrl>https://github.com/devopscodegen</organizationUrl>
+			<organization>example-bank</organization>
+			<organizationUrl>https://github.com/example-bank</organizationUrl>
 		</developer>
 	</developers>
 	<scm>
